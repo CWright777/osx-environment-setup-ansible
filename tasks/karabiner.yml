@@ -1,0 +1,54 @@
+---
+  - name: install Karabiner
+    mac_pkg: pkg_name=org.pqrs.driver.Karabiner pkg_version=10.14.0
+      url=https://pqrs.org/osx/karabiner/files/Karabiner-10.21.0.dmg
+      archive_type=dmg archive_path='Karabiner.sparkle_guided.pkg' creates=Karabiner.app
+    become: yes
+
+  - name: download Karabiner Mappings
+    git:
+      repo: https://github.com/CWright777/custom-karabiner-mappings
+      dest: "/Users/{{username}}/Library/Application Support/Karabiner"
+
+  - name: open Karabiner
+    command: open -g /Applications/Karabiner.app
+
+  - pause: seconds=4
+
+  - name: close Karabiner preferences
+    command: osascript -e 'quit app "Karabiner Preferences"'
+
+  - name: close Karabiner AX Notifier
+    command: osascript -e 'quit app "Karabiner_AXNotifier"'
+
+  - name: close Karabiner Auth Warning
+    command: osascript -e 'quit app "universalAccessAuthWarn"'
+
+  - pause: seconds=1
+
+  # - name: prepare settings to be set
+  #   shell: "/Applications/Karabiner.app/Contents/Library/bin/karabiner \
+  #     be_careful_to_use__clear_all_values_by_name \
+  #     Default\ Profile"
+  #   ignore_errors: yes
+
+  # - name: move Karabiner Mappings
+  #   copy:
+  #     src: ~/tmp/custom-karabiner-mappings/private.xml
+  #     dest: "/Users/{{username}}/Library/Application Support/Karabiner"
+  #     owner: "{{ username }}"
+  #     group: "{{ username }}"
+  #     mode: 0744
+
+  - name: install Karabiner Settings
+    shell: "/Applications/Karabiner.app/Contents/Library/bin/karabiner set {{item}} 1"
+    with_items:
+      - caps_lock_to_hyper_or_escape
+      - option.emacsmode_controlH
+      - option.emacsmode_force_controlH_term
+      - option.emacsmode_force_controlH_vm
+      - option.emacsmode_force_controlH_x11
+      - option.ubiq_vimnormal_insert
+      - private.shifts_to_forward_backward_word
+      - remap.controlL2controlL_escape
+      - remap.simple_vi_mode

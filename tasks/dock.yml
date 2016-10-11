@@ -1,0 +1,28 @@
+---
+  - name: remove stuff from Dock
+    shell: dockutil --remove '{{ item }}'
+    ignore_errors: true
+    with_items: dockitems_to_remove
+
+  - name: check if items in dock exist
+    shell: dockutil --find '{{ item.name }}' || dockutil --add '{{ item.path }}'
+    with_items: dockitems_to_persist
+
+  - name: fix order
+    shell: dockutil --move '{{ item.name }}' --position {{ item.pos }}
+    with_items: dockitems_to_persist
+
+  - name: change dock size
+    osx_defaults: domain=com.apple.dock key=tilesize type=int value=40
+
+  - name: turn on autohide dock
+    osx_defaults: domain=com.apple.dock key=autohide type=bool value=true
+
+  - name: delete autohide delay
+    osx_defaults: domain=com.apple.dock key=autohide-delay type=float value=0
+
+  - name: delete autohide-time-modifier
+    osx_defaults: domain=com.apple.dock key=autohide-time-modifier type=float value=0
+
+  - name: reset dock
+    shell: killall Dock

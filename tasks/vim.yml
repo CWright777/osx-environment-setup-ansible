@@ -1,0 +1,9 @@
+---
+  - name: checkout vundle repo
+    git:
+      repo: https://github.com/VundleVim/Vundle.vim.git
+      dest: ~/.vim/bundle/vundle
+
+  - name: run bundle install
+    command: vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qa
+    failed_when: false
