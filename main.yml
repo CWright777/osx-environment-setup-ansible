@@ -7,13 +7,13 @@
 
   roles:
     - geerlingguy.homebrew
-    # - geerlingguy.dotfiles
+    - geerlingguy.dotfiles
 
   tasks:
     # - include: tasks/ansible-setup.yml
-    # - include: tasks/vim.yml
-    # - include: tasks/flux.yml
-    # - include: tasks/iterm.yml
-    # - include: tasks/karabiner.yml
-    # - include: tasks/zsh.yml
-    # - include: tasks/dock.yml
+    - include: tasks/vim.yml
+    - include: tasks/flux.yml
+    - include: tasks/iterm.yml
+    - include: tasks/karabiner.yml
+    - include: tasks/zsh.yml
+    - include: tasks/dock.yml

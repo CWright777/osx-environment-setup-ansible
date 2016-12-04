@@ -3,20 +3,20 @@
 dotfiles_repo: https://github.com/CWright777/dotfiles.git
 dotfiles_home: "~"
 dotfiles_files:
-  # - .slate
-  # - .tmux.conf
-  # - .vimrc
-  # - .zshrc
+  - .slate
+  - .tmux.conf
+  - .vimrc
+  - .zshrc
 
 homebrew_installed_packages:
   # - ansible
   # - wget
   # - vim
-  # - tmux
-  # - zsh
-  # - zsh-completions
-  # - nvm
-  # - dockutil
+  - tmux
+  - zsh
+  - zsh-completions
+  - nvm
+  - dockutil
 
 homebrew_taps:
   - caskroom/cask
@@ -26,14 +26,14 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  # - google-chrome
+  - google-chrome
   # - vagrant
-  # - firefox
-  # - vlc
-  # - slack
-  # - slate
-  # - atom
-  # - wireshark --with-qt5
+  - firefox
+  - vlc
+  - slack
+  - slate
+  - atom
+  - wireshark --with-qt5
 
 username: cliff
 
